@@ -50,7 +50,7 @@
           wrapProgram $out/bin/$pname \
             --prefix PYTHONPATH : ${python}/${python.sitePackages} \
         '';
-      };
+      };;
 
   };
 
