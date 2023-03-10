@@ -1,19 +1,18 @@
 {
   description = "Flake for video-downloader";
-
-  inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
-  };
-
+  inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
   
   outputs = { self, nixpkgs }:
-
+  
   let
     pname = "video-downloader";
     version = "v0.11.1";
-
-  in {  
-
+    
+  in
+  
+  
+  {  
+  
     defaultPackage.x86_64-linux =
       with import nixpkgs { system = "x86_64-linux"; };
       stdenv.mkDerivation rec {
@@ -51,7 +50,8 @@
           wrapProgram $out/bin/$pname \
             --prefix PYTHONPATH : ${python}/${python.sitePackages} \
         '';
+      };
 
-    };
   };
+
 }
