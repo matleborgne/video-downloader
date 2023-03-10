@@ -52,7 +52,6 @@
             --prefix PYTHONPATH : ${python}/${python.sitePackages} \
         '';
 
-      };
     };
   };
 }
