@@ -11,9 +11,6 @@
   let
     pname = "video-downloader";
     version = "v0.11.1";
-    rev = "60cedc3b7481eb966b69ac902a7246cdcc5be1e4";
-    sha256 = "BNopifjZnrFJwK8FiTRO6fRylQVg0Mm17ToSYNmukqk=";
-
 
   in {  
 
@@ -25,10 +22,8 @@
         inherit pname;
 
         src = fetchFromGitHub {
-          owner = "Unrud";
+          owner = "matleborgne";
           repo = "${pname}";
-          inherit rev;
-          inherit sha256;
         };
 
         nativeBuildInputs = [
