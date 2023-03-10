@@ -13,7 +13,7 @@
   
   {  
   
-    defaultPackage.x86_64-linux = (
+    defaultPackage.x86_64-linux =
       with import nixpkgs { system = "x86_64-linux"; };
       stdenv.mkDerivation rec {
 
@@ -50,7 +50,7 @@
           wrapProgram $out/bin/$pname \
             --prefix PYTHONPATH : ${python}/${python.sitePackages} \
         '';
-      };);
+      };
 
   };
 
