@@ -2,32 +2,34 @@
 # Copyright (C) 2020 THE video-downloader'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the video-downloader package.
 # Umidjon Almasov <umidjon@almasov.uz>, 2022.
-#
+# Elvis <svlpolb31j@zlorkun.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: video-downloader\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-27 21:57+0100\n"
-"PO-Revision-Date: 2022-02-01 21:01+0500\n"
-"Last-Translator: Umidjon Almasov <umidjon@almasov.uz>\n"
-"Language-Team: Uzbek\n"
+"POT-Creation-Date: 2024-04-13 19:20+0200\n"
+"PO-Revision-Date: 2024-02-18 12:01+0000\n"
+"Last-Translator: Elvis <svlpolb31j@zlorkun.com>\n"
+"Language-Team: Uzbek <https://hosted.weblate.org/projects/video-downloader/"
+"gui/uz/>\n"
 "Language: uz\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.4\n"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:7
 #: data/com.github.unrud.VideoDownloader.desktop.in:3 src/about_dialog.ui.in:27
-#: src/main.py:38 src/window.ui:53
+#: src/main.py:39 src/window.ui:50
 msgid "Video Downloader"
-msgstr "Video yuklab oluvchi"
+msgstr "Video Yuklab oluvchi"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:8
 #: data/com.github.unrud.VideoDownloader.desktop.in:4
-msgid "Download videos from websites like YouTube and many others"
-msgstr "YouTube va koʻplab boshqa saytlardan video yuklab olish"
+#, fuzzy
+msgid "Download web videos"
+msgstr "YouTube va koʻplab boshqa saytlardan video yuklab oladi"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:10
 msgid ""
@@ -35,11 +37,11 @@ msgid ""
 "following features:"
 msgstr ""
 "Foydalanish uchun oson boʻlgan interfeys orqali saytlardan video yuklab "
-"olish. Quyidagi imkoniyatlar mavjud:"
+"oladi. Quyidagi imkoniyatlarni taqdim etadi:"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:15
 msgid "Convert videos to MP3"
-msgstr "Video MP3 ga aylantirish"
+msgstr "Videoni MP3 ga aylantirish"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:16
 msgid "Supports password-protected and private videos"
@@ -59,8 +61,13 @@ msgstr ""
 msgid "Based on yt-dlp."
 msgstr "yt-dlp da asoslangan."
 
+#. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/com.github.unrud.VideoDownloader.desktop.in:14
-#: src/shortcuts_dialog.ui:39 src/window.ui:29
+msgid "YouTube;Download;"
+msgstr ""
+
+#: data/com.github.unrud.VideoDownloader.desktop.in:17
+#: src/shortcuts_dialog.ui:39 src/window.ui:26
 msgid "New Window"
 msgstr "Yangi oyna"
 
@@ -68,7 +75,7 @@ msgstr "Yangi oyna"
 msgid "Authentication Required"
 msgstr "Avtorizatsiya talab qilinadi"
 
-#: src/authentication_dialog.py:34 src/window.py:355 src/window.ui:248
+#: src/authentication_dialog.py:34 src/window.ui:245
 msgid "Cancel"
 msgstr "Bekor qilish"
 
@@ -81,7 +88,7 @@ msgid "Skip"
 msgstr "Oʻtkazib yuborish"
 
 #: src/authentication_dialog_login.ui:31
-#: src/authentication_dialog_password.ui:13
+#: src/authentication_dialog_password.ui:31
 msgid "The video is not public."
 msgstr "Video ommaviy emas."
 
@@ -90,65 +97,66 @@ msgid "Username"
 msgstr "Foydalanuvchi nomi"
 
 #: src/authentication_dialog_login.ui:70
-#: src/authentication_dialog_password.ui:22
+#: src/authentication_dialog_password.ui:40
 msgid "Password"
 msgstr "Parol"
 
-#: src/main.py:37
+#: src/main.py:38
 msgid "Prefill URL field"
 msgstr "URL maydonini toʻldiring"
 
-#: src/model.py:66
+#: src/model.py:67
 msgid "Best"
 msgstr "Eng yaxshi"
 
-#: src/model.py:67
+#: src/model.py:68
 msgid "4320p (8K)"
 msgstr "4320p (8K)"
 
-#: src/model.py:68
+#: src/model.py:69
 msgid "2160p (4K)"
 msgstr "2160p (4K)"
 
-#: src/model.py:69
+#: src/model.py:70
 msgid "1440p (HD)"
 msgstr "1440p (HD)"
 
-#: src/model.py:70
+#: src/model.py:71
 msgid "1080p (HD)"
 msgstr "1080p (HD)"
 
-#: src/model.py:71
+#: src/model.py:72
 msgid "720p (HD)"
 msgstr "720p (HD)"
 
-#: src/model.py:72
+#: src/model.py:73
 msgid "480p"
 msgstr "480p"
 
-#: src/model.py:73
+#: src/model.py:74
 msgid "360p"
 msgstr "360p"
 
-#: src/model.py:74
+#: src/model.py:75
 msgid "240p"
 msgstr "240p"
 
-#: src/model.py:75
+#: src/model.py:76
 msgid "144p"
 msgstr "144p"
 
-#: src/model.py:157
+#: src/model.py:159
 msgid "Invalid download folder"
-msgstr ""
+msgstr "Yuklab olish papkasi yaroqsiz"
 
-#: src/model.py:277 src/model.py:283 src/window.py:347
+#: src/model.py:280 src/model.py:286 src/window.py:358
+#, fuzzy
 msgid "Not a directory"
-msgstr ""
+msgstr "Papka emas"
 
-#: src/model.py:281 src/model.py:286
+#: src/model.py:284 src/model.py:289
 msgid "Permission denied"
-msgstr ""
+msgstr "Ruxsat berilmadi"
 
 #: src/playlist_dialog.py:29
 msgid "Download Playlist?"
@@ -168,116 +176,118 @@ msgstr "Pleylistdagi hamma videolar"
 
 #: src/shortcuts_dialog.ui:29
 msgid "General"
-msgstr ""
+msgstr "Umumiy"
 
 #: src/shortcuts_dialog.ui:33
 msgid "Open Menu"
-msgstr ""
+msgstr "Menyuni Ochish"
 
 #: src/shortcuts_dialog.ui:45
 msgid "Close Window"
-msgstr ""
+msgstr "Menyuni Yopish"
 
 #: src/shortcuts_dialog.ui:51
 msgid "Quit"
-msgstr ""
+msgstr "Chiqish"
 
-#: src/shortcuts_dialog.ui:57 src/window.ui:40
+#: src/shortcuts_dialog.ui:57 src/window.ui:37
+#, fuzzy
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Klaviatura yorliqlari"
 
 #: src/shortcuts_dialog.ui:64
 msgid "Navigation"
-msgstr ""
+msgstr "Navigatsiya"
 
 #: src/shortcuts_dialog.ui:68
 msgid "Go back"
-msgstr ""
+msgstr "Ortga qaytish"
 
 #: src/shortcuts_dialog.ui:74
 msgid "Switch to Audio"
-msgstr ""
+msgstr "Audioga o'tish"
 
 #: src/shortcuts_dialog.ui:80
 msgid "Switch to Video"
-msgstr ""
+msgstr "Videoga o'tish"
 
-#: src/window.py:178
+#: src/window.py:187
 msgid "Downloading"
 msgstr "Yuklab olinmoqda"
 
-#: src/window.py:180 src/window.py:203
+#: src/window.py:189 src/window.py:209
+#, fuzzy
 msgid "{} of {}"
 msgstr "{} {} dan"
 
-#: src/window.py:204 src/window.py:206
+#: src/window.py:210 src/window.py:211
 msgid "unknown"
-msgstr "nomaʻlum"
+msgstr "noma'lum"
 
-#: src/window.py:274 src/window.ui:387
+#: src/window.py:281 src/window.ui:386
 msgid "Download failed"
 msgstr "Yuklab olinmadi"
 
-#: src/window.py:278 src/window.ui:504
+#: src/window.py:285 src/window.ui:511
 msgid "Download finished"
 msgstr "Yuklab olindi"
 
-#: src/window.py:282 src/window.ui:513
+#: src/window.py:291 src/window.ui:530
 msgid "Open Download Location"
 msgstr "Yuklab olingan joyni ochish"
 
-#: src/window.py:320
+#: src/window.py:329
 msgid "Reset to Default"
-msgstr ""
+msgstr "Standart holatga qaytarish"
 
-#: src/window.py:321 src/window.py:353 src/window.ui:36
+#: src/window.py:330 src/window.py:363 src/window.ui:33
 msgid "Change Download Location"
-msgstr ""
+msgstr "Yuklash joyini o'zgartirish"
 
-#: src/window.py:349
+#: src/window.py:360
 msgid "Invalid folder selected"
-msgstr ""
+msgstr "Yaroqsiz papka tanlandi"
 
-#: src/window.py:355
+#: src/window.py:364
 msgid "Select Folder"
-msgstr ""
+msgstr "Papkani tanlash"
 
-#: src/window.ui:44
+#: src/window.ui:41
 msgid "About Video Downloader"
 msgstr "Dastur haqida"
 
-#: src/window.ui:94
+#: src/window.ui:91
 msgid "Main Menu"
-msgstr ""
+msgstr "Asosiy menyu"
 
-#: src/window.ui:108
+#: src/window.ui:105
 msgid "Audio"
 msgstr "Audio"
 
-#: src/window.ui:130 src/window.ui:181
+#: src/window.ui:127 src/window.ui:178
 msgid "URL"
 msgstr "URL"
 
-#: src/window.ui:140 src/window.ui:210
+#: src/window.ui:137 src/window.ui:207
 msgid "Download"
 msgstr "Yuklab olish"
 
-#: src/window.ui:159
+#: src/window.ui:156
 msgid "Video"
 msgstr "Video"
 
-#: src/window.ui:189
+#: src/window.ui:186
 msgid "Resolution"
-msgstr "Oʻlchamlari"
+msgstr "O'lchamlari"
 
-#: src/window.ui:197
+#: src/window.ui:194
 msgid "Prefer MPEG format"
-msgstr ""
+msgstr "MPEG formatini afzal ko'rish"
 
-#: src/window.ui:339 src/window.ui:358 src/window.ui:455 src/window.ui:474
+#: src/window.ui:338 src/window.ui:357 src/window.ui:463 src/window.ui:482
 msgid "Back"
 msgstr "Orqaga"
 
-#: src/window.ui:406
+#: src/window.ui:405 src/window.ui:547
 msgid "Details"
 msgstr "Tafsilotlar"

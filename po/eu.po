@@ -1,110 +1,110 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the video-downloader package.
-# Vojtěch Perník <translations@pervoj.cz>, 2021.
-# vikdevelop <super-vik1@protonmail.com>, 2023, 2024.
+# Eder Etxebarria Rojo <eder@betxepare.eus>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: video-downloader\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-04-13 19:20+0200\n"
-"PO-Revision-Date: 2024-08-02 23:04+0000\n"
-"Last-Translator: vikdevelop <super-vik1@protonmail.com>\n"
-"Language-Team: Czech <https://hosted.weblate.org/projects/video-downloader/"
-"gui/cs/>\n"
-"Language: cs\n"
+"PO-Revision-Date: 2024-11-27 02:54+0000\n"
+"Last-Translator: Eder Etxebarria Rojo <eder@betxepare.eus>\n"
+"Language-Team: Basque <https://hosted.weblate.org/projects/video-downloader/"
+"gui/eu/>\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.7-dev\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.9-dev\n"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:7
 #: data/com.github.unrud.VideoDownloader.desktop.in:3 src/about_dialog.ui.in:27
 #: src/main.py:39 src/window.ui:50
 msgid "Video Downloader"
-msgstr "Video Downloader"
+msgstr "Bideo Deskargatzailea"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:8
 #: data/com.github.unrud.VideoDownloader.desktop.in:4
 msgid "Download web videos"
-msgstr "Stahování videí z webu"
+msgstr "Webguneetako bideoak deskargatu"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:10
 msgid ""
 "Download videos from websites with an easy-to-use interface. Provides the "
 "following features:"
 msgstr ""
-"Stahujte videa z internetu pomocí jednoduchého rozhraní s následujícími "
-"funkcemi:"
+"Deskargatu bideoak webguneetatik, erabiltzeko erraza den interfaze batekin. "
+"Ezaugarri hauek eskaintzen ditu:"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:15
 msgid "Convert videos to MP3"
-msgstr "Převod videí do MP3"
+msgstr "Bihurtu bideoak MP3ra"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:16
 msgid "Supports password-protected and private videos"
-msgstr "Podpora zaheslovaných a soukromých videí"
+msgstr "Pasahitz bidez babestutako bideoak eta pribatuak onartzen ditu"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:17
 msgid "Download single videos or whole playlists"
-msgstr "Stažení jednoho videa nebo celých playlistů"
+msgstr "Deskargatu bideoak banan-banan edo erreprodukzio-zerrenda osoak"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:18
 msgid "Automatically selects a video format based on your quality demands"
-msgstr "Automatický výběr formátu videa podle zvolených požadavků na kvalitu"
+msgstr ""
+"Bideo formatu bat automatikoki hautatzen du zure kalitate eskakizunen arabera"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:20
 msgid "Based on yt-dlp."
-msgstr "Založen na yt-dlp."
+msgstr "Yt-dlp programan oinarritua."
 
 #. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/com.github.unrud.VideoDownloader.desktop.in:14
 msgid "YouTube;Download;"
-msgstr "YouTube;Download;"
+msgstr "Youtube;Deskargatu;"
 
 #: data/com.github.unrud.VideoDownloader.desktop.in:17
 #: src/shortcuts_dialog.ui:39 src/window.ui:26
 msgid "New Window"
-msgstr "Nové okno"
+msgstr "Leiho berria"
 
 #: src/authentication_dialog.py:30
 msgid "Authentication Required"
-msgstr "Je vyžadováno ověření"
+msgstr "Autentikazioa derrigorrezkoa da"
 
 #: src/authentication_dialog.py:34 src/window.ui:245
 msgid "Cancel"
-msgstr "Zrušit"
+msgstr "Ezeztatu"
 
 #: src/authentication_dialog.py:46
 msgid "Sign in"
-msgstr "Přihlásit se"
+msgstr "Saioa hasi"
 
 #: src/authentication_dialog.py:46
 msgid "Skip"
-msgstr "Přeskočit"
+msgstr "Atzera egin"
 
 #: src/authentication_dialog_login.ui:31
 #: src/authentication_dialog_password.ui:31
 msgid "The video is not public."
-msgstr "Video není veřejné."
+msgstr "Bideoa ez da publikoa."
 
 #: src/authentication_dialog_login.ui:44
 msgid "Username"
-msgstr "Uživatelské jméno"
+msgstr "Erabiltzailea"
 
 #: src/authentication_dialog_login.ui:70
 #: src/authentication_dialog_password.ui:40
 msgid "Password"
-msgstr "Heslo"
+msgstr "Pasahitza"
 
 #: src/main.py:38
 msgid "Prefill URL field"
-msgstr "Předvyplněné pole URL"
+msgstr "Bete URL eremua"
 
 #: src/model.py:67
 msgid "Best"
-msgstr "Nejlepší"
+msgstr "Onena"
 
 #: src/model.py:68
 msgid "4320p (8K)"
@@ -144,119 +144,119 @@ msgstr "144p"
 
 #: src/model.py:159
 msgid "Invalid download folder"
-msgstr "Neplatná složka pro stahování"
+msgstr "Deskargen karpeta ez da zuzena"
 
 #: src/model.py:280 src/model.py:286 src/window.py:358
 msgid "Not a directory"
-msgstr "Nikoliv adresář"
+msgstr "Ez da direktorio bat"
 
 #: src/model.py:284 src/model.py:289
 msgid "Permission denied"
-msgstr "Povolení zamítnuto"
+msgstr "Baimena ezeztatua"
 
 #: src/playlist_dialog.py:29
 msgid "Download Playlist?"
-msgstr "Stáhnout playlist?"
+msgstr "Erreprodukzio-zerrenda deskargatu?"
 
 #: src/playlist_dialog.py:30
 msgid "The video is part of a playlist."
-msgstr "Video je součástí playlistu."
+msgstr "Bideoa erreprodukzio-zerrenda baten barruan dago."
 
 #: src/playlist_dialog.py:32
 msgid "Single Video"
-msgstr "Jedno video"
+msgstr "Bideo bakarra"
 
 #: src/playlist_dialog.py:33
 msgid "All Videos in Playlist"
-msgstr "Všechna videa z playlistu"
+msgstr "Erreprodukzio-zerrendaren bideo guztiak"
 
 #: src/shortcuts_dialog.ui:29
 msgid "General"
-msgstr "Obecné"
+msgstr "Orokorra"
 
 #: src/shortcuts_dialog.ui:33
 msgid "Open Menu"
-msgstr "Otevřít nabídku"
+msgstr "Ireki menua"
 
 #: src/shortcuts_dialog.ui:45
 msgid "Close Window"
-msgstr "Zavřít okno"
+msgstr "Itxi leihoa"
 
 #: src/shortcuts_dialog.ui:51
 msgid "Quit"
-msgstr "Ukončit"
+msgstr "Atera"
 
 #: src/shortcuts_dialog.ui:57 src/window.ui:37
 msgid "Keyboard Shortcuts"
-msgstr "Klávesové zkratky"
+msgstr "Teklatuko lasterbideak"
 
 #: src/shortcuts_dialog.ui:64
 msgid "Navigation"
-msgstr "Navigace"
+msgstr "Nabigazioa"
 
 #: src/shortcuts_dialog.ui:68
 msgid "Go back"
-msgstr "Přejít zpět"
+msgstr "Atzera joan"
 
 #: src/shortcuts_dialog.ui:74
 msgid "Switch to Audio"
-msgstr "Přejít ke Zvuku"
+msgstr "Audiora pasa"
 
 #: src/shortcuts_dialog.ui:80
 msgid "Switch to Video"
-msgstr "Přejít k Videu"
+msgstr "Bideora pasa"
 
 #: src/window.py:187
 msgid "Downloading"
-msgstr "Stahování"
+msgstr "Deskargatzen"
 
 #: src/window.py:189 src/window.py:209
 msgid "{} of {}"
-msgstr "{} z {}"
+msgstr "{} {}etik"
 
 #: src/window.py:210 src/window.py:211
 msgid "unknown"
-msgstr "neznámý"
+msgstr "ezezagun"
 
 #: src/window.py:281 src/window.ui:386
 msgid "Download failed"
-msgstr "Stahování se nezdařilo"
+msgstr "Deskargak huts egin du"
 
 #: src/window.py:285 src/window.ui:511
 msgid "Download finished"
-msgstr "Stahování dokončeno"
+msgstr "Deskarga bukatu da"
 
 #: src/window.py:291 src/window.ui:530
 msgid "Open Download Location"
-msgstr "Otevřít adresář pro stahování"
+msgstr "Ireki deskargen kokapena"
 
 #: src/window.py:329
 msgid "Reset to Default"
-msgstr "Resetovat na výchozí hodnoty"
+msgstr "Berrezarri lehenetsitakoak"
 
 #: src/window.py:330 src/window.py:363 src/window.ui:33
 msgid "Change Download Location"
-msgstr "Vybrat složku pro stahování"
+msgstr "Aldatu deskargen kokapena"
 
 #: src/window.py:360
 msgid "Invalid folder selected"
-msgstr "Vybrána nesprávná složka"
+msgstr "Baliogabeko karpeta hautatua"
 
 #: src/window.py:364
 msgid "Select Folder"
-msgstr "Vybrat složku"
+msgstr "Karpeta hautatu"
 
 #: src/window.ui:41
 msgid "About Video Downloader"
-msgstr "O aplikaci Video Downloader"
+msgstr "Bideo Deskargatzaileari buruz"
 
 #: src/window.ui:91
 msgid "Main Menu"
-msgstr "Hlavní nabídka"
+msgstr "Menu orokorra"
 
 #: src/window.ui:105
 msgid "Audio"
-msgstr "Zvuk"
+msgstr "Audio"
 
 #: src/window.ui:127 src/window.ui:178
 msgid "URL"
@@ -264,24 +264,24 @@ msgstr "URL"
 
 #: src/window.ui:137 src/window.ui:207
 msgid "Download"
-msgstr "Stáhnout"
+msgstr "Deskargatu"
 
 #: src/window.ui:156
 msgid "Video"
-msgstr "Video"
+msgstr "Bideoa"
 
 #: src/window.ui:186
 msgid "Resolution"
-msgstr "Rozlišení"
+msgstr "Bereizmena"
 
 #: src/window.ui:194
 msgid "Prefer MPEG format"
-msgstr "Preferovat formát MPEG"
+msgstr "MPEG formatua nahiago"
 
 #: src/window.ui:338 src/window.ui:357 src/window.ui:463 src/window.ui:482
 msgid "Back"
-msgstr "Zpět"
+msgstr "Atzera"
 
 #: src/window.ui:405 src/window.ui:547
 msgid "Details"
-msgstr "Detaily"
+msgstr "Zehaztasunak"

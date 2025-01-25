@@ -16,12 +16,14 @@
 # along with Video Downloader.  If not, see <http://www.gnu.org/licenses/>.
 
 import functools
+import math
+import time
 import traceback
 from collections import OrderedDict
 
-from gi.repository import GLib, GObject
+from gi.repository import Gio, GLib, GObject
 
-from video_downloader.util import g_log
+from video_downloader.util import g_log, gobject_log
 
 
 class Closable:
@@ -64,6 +66,7 @@ class CloseStack(Closable):
         self.__closables[self.__key] = closable
         closable.add_close_callback(self.__closables.pop, self.__key)
         self.__key += 1
+        return closable
 
     def close(self):
         while self.__closables:
@@ -79,7 +82,7 @@ class SignalConnection(Closable):
         def on_notify(*args):
             if no_args:
                 args = []
-            callback(*args, *extra_args)
+            return callback(*args, *extra_args)
         handler = obj.connect(signal_name, on_notify)
         self.add_close_callback(obj.disconnect, handler)
 
@@ -126,3 +129,42 @@ class PropertyBinding(Closable):
                 dest_obj.set_property(dest_prop, value)
             finally:
                 self.__frozen = False
+
+
+class RateLimit(Closable):
+    def __init__(self, func, seconds=0):
+        super().__init__()
+        self.__seconds = seconds
+        self.__func = func
+        self.__last_call = 0
+        self.__timeout = None
+
+        def cleanup_timeout():
+            if self.__timeout is None:
+                return
+            GLib.Source.remove(self.__timeout)
+            self.__timeout = None
+        self.add_close_callback(cleanup_timeout)
+
+    def __call__(self):
+        if self.__timeout is not None or self.closed:
+            return
+        timeout = max(self.__seconds - (time.monotonic() - self.__last_call),
+                      0)
+        self.__timeout = GLib.timeout_add(
+            math.ceil(timeout * 1000), self.__handle_timeout)
+
+    def __handle_timeout(self):
+        self.__func()
+        self.__last_call = time.monotonic()
+        self.__timeout = None
+        return False
+
+
+def create_action(action_group, closable, name, callback, *extra_args,
+                  parameter_type=None, no_args=False):
+    action = gobject_log(Gio.SimpleAction.new(name, parameter_type), name)
+    closable.push(SignalConnection(
+        action, 'activate', callback, *extra_args, no_args=no_args))
+    action_group.add_action(action)
+    closable.add_close_callback(action_group.remove_action, name)

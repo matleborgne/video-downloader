@@ -36,7 +36,13 @@ from video_downloader.util.path import encode_filesystem_path
 
 # File names are typically limited to 255 bytes
 MAX_OUTPUT_TITLE_LENGTH = 200
+MAX_ID_LENGTH = 200
 MAX_THUMBNAIL_RESOLUTION = 1024
+
+
+def log(format_string, *args):
+    print(f'[yt_dlp_slave] {format_string % args}',
+          file=sys.stderr, flush=True)
 
 
 def _short_filename(name, length):
@@ -69,9 +75,11 @@ class SubtitlesConverterPP(FFmpegPostProcessor):
             filepath = sub.get('filepath')
             if not filepath:
                 continue
-            print('[yt_dlp_slave] Converting subtitle (%r, %r)' %
-                  (lang, sub['ext']), file=sys.stderr, flush=True)
-            if sub['ext'] in ['dfxp', 'ttml', 'tt']:
+            if not os.path.isfile(filepath):
+                log('Skipping missing subtitle (%r, %r)', lang, sub.get('ext'))
+                continue
+            log('Converting subtitle (%r, %r)', lang, sub.get('ext'))
+            if sub.get('ext') in ['dfxp', 'ttml', 'tt']:
                 # Try to use yt-dlp's internal dfxp2srt converter
                 with open(filepath, 'rb') as f:
                     data = f.read()
@@ -134,8 +142,10 @@ class ThumbnailConverterPP(FFmpegPostProcessor):
             if new_thumbnails:  # Convert only one thumbnail
                 files_to_delete.append(filepath)
                 continue
-            print('[yt_dlp_slave] Converting thumbnail',
-                  file=sys.stderr, flush=True)
+            if not os.path.isfile(filepath):
+                log('Skipping missing thumbnail (%r)', thumb.get('id'))
+                continue
+            log('Converting thumbnail (%r)', thumb.get('id'))
             # Try to convert thumbnail with ffmpeg
             new_filepath = _convert_filepath(info, files_to_delete, filepath,
                                              'jpg')
@@ -263,6 +273,8 @@ class YoutubeDLSlave:
 
     def error(self, msg):
         print(msg, file=sys.stderr, flush=True)
+        traceback.print_exc(file=sys.stderr)
+        sys.stderr.flush()
         # Handle authentication requests
         if (self._allow_authentication_request and
                 re.search(r'\b[Ss]ign in\b|--username', msg)):
@@ -308,7 +320,7 @@ class YoutubeDLSlave:
             file_title, file_ext = os.path.splitext(filename)
             if file_title == output_title and (
                     mode == 'audio' and file_ext.lower() == '.mp3' or
-                    mode != 'audio' and file_ext.lower() != '.mp3') and (
+                    mode != 'audio') and (
                     os.path.isfile(filepath)):
                 return filename
         return None
@@ -439,6 +451,9 @@ class YoutubeDLSlave:
                     self._handler.on_error(
                         'ERROR: Failed to create download folder: %s' % e)
                     sys.exit(1)
+                if len(info.get('id', '')) > MAX_ID_LENGTH:
+                    info['id'] = info.get(
+                        'id', '')[:max(0, MAX_ID_LENGTH - 1)] + '…'
                 info_path = os.path.join(
                     temp_download_dir,
                     sanitize_filename((info.get('id') or '') + '.info.json'))

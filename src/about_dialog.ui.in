@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright (C) 2020-2022 Unrud <unrud@outlook.com>
+<!-- Copyright (C) 2020-2023 Unrud <unrud@outlook.com>
 
 This file is part of Video Downloader.
 
@@ -43,32 +43,65 @@ Artem Polishchuk
 Óscar Fernández Díaz</property>
     <property name="artists">Tobias Bernard</property>
     <property name="translator-credits">Åke Engelbrektson
-albanobattistella
+Albano Battistella
 Ali Khomami P.
 Allan Nordhøy
+AngryPenguinPL
+Balazs
+Christian Elbrianno
 Dan
+Eder Etxebarria Rojo
+Elvis
+FCastro32
 gallegonovato
-Gustavo Peredo
+Gustavo Machado Peredo
 Heimen Stoffels
-Ícar
+Hoshmand M. Qadir
+Host1c
+Ícar N. S.
+Ihor Hordiichuk
+Irénée THIRION
+Jiri Grönroos
 J. Lavoie
+Lee Junseo
+Littux
 Luna Jernberg
-MartinIIOT
-milotype
+L.Yang
+MartinIIoT
+mere
+Milan Šalka
+Milo Ivir
 Oğuz Ersen
+Onnar Rick
 Óscar Fernández Díaz
 ovari
+P. A.
+Peter Dave Hello
+Philip Goto
+Piotr Wieczorek
+Priit Jõerüüt
 Rafael Mardojai CM
-rene-coty
+Reza Almanda
+Roger VC
 Roy Meissner
+Ryo Nakano
 Sabri Ünal
-sicklylife.jp
+Scrambled777
+sicklylife
+SPiRiT
+Stratos Petrelis
+Thiago Carmona
 Thorfin89
+Troja
+tuxanator
 Umidjon Almasov
 Ümit Solmaz
-Vojtěch Perník</property>
+Valeriy Manzhos
+vikdevelop
+Vojtěch Perník
+yoval keshet</property>
     <!-- Legal -->
-    <property name="copyright">Copyright © 2019-2022 Unrud</property>
+    <property name="copyright">Copyright © 2019-2023 Unrud</property>
     <property name="license-type">gpl-3-0</property>
   </object>
 </interface>

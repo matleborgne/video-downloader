@@ -30,8 +30,9 @@ from video_downloader.playlist_dialog import PlaylistDialog
 from video_downloader.shortcuts_dialog import ShortcutsDialog
 from video_downloader.util import gobject_log
 from video_downloader.util.connection import (CloseStack, PropertyBinding,
-                                              SignalConnection)
-from video_downloader.util.path import expand_path
+                                              RateLimit, SignalConnection,
+                                              create_action)
+from video_downloader.util.path import expand_path, open_in_file_manager
 from video_downloader.util.response import AsyncResponse
 
 DOWNLOAD_IMAGE_SIZE = 128
@@ -42,7 +43,8 @@ N_ = gettext.gettext
 @Gtk.Template(resource_path='/com/github/unrud/VideoDownloader/window.ui')
 class Window(Adw.ApplicationWindow, HandlerInterface):
     __gtype_name__ = 'VideoDownloaderWindow'
-    error_buffer = Gtk.Template.Child()
+    error_detail_wdg = Gtk.Template.Child()
+    success_detail_wdg = Gtk.Template.Child()
     audio_url_wdg = Gtk.Template.Child()
     video_url_wdg = Gtk.Template.Child()
     resolution_wdg = Gtk.Template.Child()
@@ -55,6 +57,7 @@ class Window(Adw.ApplicationWindow, HandlerInterface):
     success_back_wdg = Gtk.Template.Child()
     download_cancel_wdg = Gtk.Template.Child()
     finished_download_dir_wdg = Gtk.Template.Child()
+    finished_download_titles_wdg = Gtk.Template.Child()
     download_page_title_wdg = Gtk.Template.Child()
     download_title_wdg = Gtk.Template.Child()
     download_progress_wdg = Gtk.Template.Child()
@@ -66,49 +69,38 @@ class Window(Adw.ApplicationWindow, HandlerInterface):
         self._cs = CloseStack()
         self.application = application
         self.model = gobject_log(Model(self))
-        self._cs.add_close_callback(self.model.shutdown)
+        self._cs.add_close_callback(self.model.destroy)
         self.window_group = gobject_log(Gtk.WindowGroup())
         self.window_group.add_window(self)
         # Setup actions
         for action_name in self.model.actions.list_actions():
             self.add_action(self.model.actions.lookup_action(action_name))
             self._cs.add_close_callback(self.remove_action, action_name)
-        for action_name, callback in [
-                ('close', self.destroy), ('about', self._show_about_dialog),
-                ('shortcuts', self._show_shortcuts_dialog),
-                ('change-download-folder', self._change_download_folder)]:
-            action = gobject_log(Gio.SimpleAction.new(action_name, None),
-                                 action_name)
-            self._cs.push(SignalConnection(
-                action, 'activate', callback, no_args=True))
-            self.add_action(action)
-            self._cs.add_close_callback(self.remove_action, action_name)
-        action_name = 'set-audio-video-page'
-        action = gobject_log(Gio.SimpleAction.new(
-            action_name, GLib.VariantType('s')), action_name)
-        self._cs.push(SignalConnection(
-            action, 'activate',
+        create_action(self, self._cs, 'close', self.destroy, no_args=True)
+        create_action(self, self._cs, 'about', self._show_about_dialog,
+                      no_args=True)
+        create_action(self, self._cs, 'shortcuts', self._show_shortcuts_dialog,
+                      no_args=True)
+        create_action(self, self._cs, 'change-download-folder',
+                      self._change_download_folder, no_args=True)
+        create_action(
+            self, self._cs, 'set-audio-video-page',
             lambda _, param: self.audio_video_stack_wdg.set_visible_child_name(
-                                 param.get_string())))
-        self.add_action(action)
-        self._cs.add_close_callback(self.remove_action, action_name)
+                                 param.get_string()),
+            parameter_type=GLib.VariantType('s'))
         # Register notifcation actions
         self._notification_uuid = str(uuid.uuid4())
-        for name, callback, *extra_args in [
-                ('notification-success', self.present),
-                ('notification-error', self.present),
-                ('notification-open-finished-download-dir',
-                 self.model.actions.activate_action,
-                 'open-finished-download-dir')]:
-            action_name = '%s--%s' % (name, self._notification_uuid)
-            action = gobject_log(Gio.SimpleAction.new(action_name), name)
-            self._cs.push(SignalConnection(
-                action, 'activate', callback, *extra_args, no_args=True))
-            application.add_action(action)
-            self._cs.add_close_callback(application.remove_action, action_name)
+        create_action(application, self._cs, 'notification-success--' +
+                      self._notification_uuid, self.present, no_args=True)
+        create_action(application, self._cs, 'notification-error--' +
+                      self._notification_uuid, self.present, no_args=True)
+        create_action(
+            application, self._cs, 'notification-open-finished-download-dir--'
+            + self._notification_uuid, self.model.actions.activate_action,
+            'open-finished-download-dir', no_args=True)
         # Bind properties to UI
         self._cs.push(PropertyBinding(
-            self.model, 'error', self.error_buffer, 'text'))
+            self.model, 'error', self.error_detail_wdg, 'label'))
         self._cs.push(PropertyBinding(
             self.model, 'url', self.audio_url_wdg, 'text', bi=True))
         self._cs.push(PropertyBinding(
@@ -120,7 +112,8 @@ class Window(Adw.ApplicationWindow, HandlerInterface):
             lambda r: list(self.model.resolutions).index(r),
             lambda i: list(self.model.resolutions)[i], bi=True))
         self._cs.push(PropertyBinding(
-            self.model, 'prefer-mpeg', self.prefer_mpeg_wdg, 'state', bi=True))
+            self.model, 'prefer-mpeg', self.prefer_mpeg_wdg, 'active',
+            bi=True))
         self._cs.push(PropertyBinding(
             self.model, 'state', self.main_stack_wdg, 'visible-child-name',
             func_a_to_b=lambda s: {'prepare': 'download',
@@ -139,11 +132,13 @@ class Window(Adw.ApplicationWindow, HandlerInterface):
         self._cs.push(PropertyBinding(
             self.model, 'finished-download-dir',
             func_a_to_b=self._update_finished_download_dir_wdg_tooltip))
+        update_download_msg_rate_limited = self._cs.push(RateLimit(
+            self._update_download_msg, 1))
         for name in ['download-bytes', 'download-bytes-total',
                      'download-speed', 'download-eta']:
-            self._cs.push(PropertyBinding(
-                self.model, name,
-                func_a_to_b=lambda _: self._update_download_msg()))
+            self._cs.push(SignalConnection(
+                self.model, 'notify::' + name,
+                update_download_msg_rate_limited, no_args=True))
         self._cs.push(PropertyBinding(
             self.model, 'download-progress',
             func_a_to_b=lambda _: self._update_download_progress()))
@@ -162,6 +157,22 @@ class Window(Adw.ApplicationWindow, HandlerInterface):
         self._cs.push(PropertyBinding(
             self.download_images_wdg, 'transition-running',
             func_a_to_b=lambda b: b or self._clean_thumbnails()))
+        self._cs.push(PropertyBinding(
+            self.model, 'download-titles',
+            self.finished_download_titles_wdg, 'label',
+            func_a_to_b=lambda titles: ' | '.join(titles or [])))
+        self._cs.push(PropertyBinding(
+            self.model, 'finished-download-filenames',
+            self.success_detail_wdg, 'label',
+            func_a_to_b=lambda filenames: '\n'.join(
+                (f'<span baseline_shift="{-22 * 1024}">'
+                 f'<a href="{s}">{s}</a>'
+                 f'</span>')
+                for s in map(GLib.markup_escape_text, filenames or []))))
+        self._cs.push(SignalConnection(
+            self.success_detail_wdg, 'activate_link',
+            lambda sender, filename: open_in_file_manager(
+                self.model.finished_download_dir, [filename])))
         # Workaround for focusing AdwEntryRow at program startup
         self._cs.push(SignalConnection(
             self, 'show', self._update_focus_and_default, no_args=True))
@@ -188,7 +199,7 @@ class Window(Adw.ApplicationWindow, HandlerInterface):
                 if abs(num) < 1000:
                     break
                 num /= 1000
-            return locale.format_string('%.1f %s%s', (num, unit, suffix))
+            return locale.format_string('%.1f\u00A0%s%s', (num, unit, suffix))
 
         bytes_ = self.model.download_bytes
         bytes_total = self.model.download_bytes_total
@@ -197,19 +208,17 @@ class Window(Adw.ApplicationWindow, HandlerInterface):
         eta_h = eta // 60 // 60
         eta_m = eta // 60 % 60
         eta_s = eta % 60
-        msg = '%d∶%02d∶%02d' % (eta_h, eta_m, eta_s) if eta >= 0 else ''
-        if msg and (speed >= 0 or bytes_ >= 0 or bytes_total >= 0):
-            msg += ' - '
-        if bytes_ >= 0 or bytes_total >= 0:
-            msg += N_('{} of {}').format(
-                filesize_fmt(bytes_) if bytes_ >= 0 else N_('unknown'),
-                filesize_fmt(bytes_total) if bytes_total >= 0
-                else N_('unknown'))
-            if speed >= 0:
-                msg += ' (' + filesize_fmt(speed, 'B/s') + ')'
-        elif speed >= 0:
-            msg += filesize_fmt(speed, 'B/s')
-        self.download_info_wdg.set_text(msg)
+        time_msg = '%d∶%02d∶%02d' % (eta_h, eta_m, eta_s) if eta >= 0 else ''
+        size_msg = N_('{} of {}').format(
+            filesize_fmt(bytes_) if bytes_ >= 0 else N_('unknown'),
+            filesize_fmt(bytes_total) if bytes_total >= 0 else N_('unknown')
+        ) if bytes_ >= 0 or bytes_total >= 0 else ''
+        speed_msg = filesize_fmt(speed, 'B/\u2060s') if speed >= 0 else ''
+        self.download_info_wdg.set_text(
+            time_msg +
+            ('\u00A0- ' if time_msg and (size_msg or speed_msg) else '') +
+            size_msg +
+            (f" ({speed_msg})" if size_msg and speed_msg else speed_msg))
 
     def _add_thumbnail(self, thumbnail):
         try:
@@ -274,14 +283,16 @@ class Window(Adw.ApplicationWindow, HandlerInterface):
         if state == 'error':
             notification.set_title(N_('Download failed'))
             notification.set_default_action(
-                'app.notification-error--%s' % self._notification_uuid)
+                'app.notification-error--' + self._notification_uuid)
         elif state == 'success':
             notification.set_title(N_('Download finished'))
+            if self.model.download_titles:
+                notification.set_body(' | '.join(self.model.download_titles))
             notification.set_default_action(
-                'app.notification-success--%s' % self._notification_uuid)
+                'app.notification-success--' + self._notification_uuid)
             notification.add_button(
                 N_('Open Download Location'),
-                'app.notification-open-finished-download-dir--%s' %
+                'app.notification-open-finished-download-dir--' +
                 self._notification_uuid)
         else:
             assert False, 'unreachable'
@@ -331,11 +342,13 @@ class Window(Adw.ApplicationWindow, HandlerInterface):
         return async_response
 
     def _change_download_folder(self):
-        def handle_response(dialog, res):
-            if res != Gtk.ResponseType.ACCEPT:
+        def handle_callback(dialog, task):
+            try:
+                file = dialog.select_folder_finish(task)
+            except GLib.GError:
+                # Dialog cancelled
                 async_response.cancel()
                 return
-            file = dialog.get_file()
             message = path = None
             if file and file.get_path():
                 path = file.get_path()
@@ -349,17 +362,14 @@ class Window(Adw.ApplicationWindow, HandlerInterface):
             self.on_download_folder_error(
                 N_('Invalid folder selected'), message, path,
                 show_reset_button=False).chain(async_response)
-            connection.close()
-        dialog = gobject_log(Gtk.FileChooserNative(
+        dialog = gobject_log(Gtk.FileDialog(
             modal=True, title=N_('Change Download Location'),
-            action=Gtk.FileChooserAction.SELECT_FOLDER,
-            accept_label=N_('Select Folder'), cancel_label=N_('Cancel')))
-        dialog.set_transient_for(self)
-        connection = SignalConnection(dialog, 'response', handle_response)
+            accept_label=N_('Select Folder')))
+        cancellable = Gio.Cancellable()
         async_response = AsyncResponse()
-        async_response.add_close_callback(connection.close)
+        async_response.add_close_callback(cancellable.cancel)
         self._cs.push(async_response)
-        dialog.show()
+        dialog.select_folder(self, cancellable, handle_callback)
         return async_response
 
     def on_playlist_request(self):

@@ -1,110 +1,112 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the video-downloader package.
-# Vojtěch Perník <translations@pervoj.cz>, 2021.
-# vikdevelop <super-vik1@protonmail.com>, 2023, 2024.
+# "Hoshmand M. Qadir" <hoshmandctf@pm.me>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: video-downloader\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-04-13 19:20+0200\n"
-"PO-Revision-Date: 2024-08-02 23:04+0000\n"
-"Last-Translator: vikdevelop <super-vik1@protonmail.com>\n"
-"Language-Team: Czech <https://hosted.weblate.org/projects/video-downloader/"
-"gui/cs/>\n"
-"Language: cs\n"
+"PO-Revision-Date: 2023-10-14 21:23+0000\n"
+"Last-Translator: \"Hoshmand M. Qadir\" <hoshmandctf@pm.me>\n"
+"Language-Team: Kurdish (Central) <https://hosted.weblate.org/projects/video-"
+"downloader/gui/ckb/>\n"
+"Language: ckb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.7-dev\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:7
 #: data/com.github.unrud.VideoDownloader.desktop.in:3 src/about_dialog.ui.in:27
 #: src/main.py:39 src/window.ui:50
 msgid "Video Downloader"
-msgstr "Video Downloader"
+msgstr "دابەزێنەری ڤیدیۆ"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:8
 #: data/com.github.unrud.VideoDownloader.desktop.in:4
+#, fuzzy
 msgid "Download web videos"
-msgstr "Stahování videí z webu"
+msgstr "داگرتنی ڤیدیۆ لە ماڵپەڕەکانی وەک یوتیوب و چەندانی تر"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:10
 msgid ""
 "Download videos from websites with an easy-to-use interface. Provides the "
 "following features:"
 msgstr ""
-"Stahujte videa z internetu pomocí jednoduchého rozhraní s následujícími "
-"funkcemi:"
+"داگرتنی ڤیدیۆ لە ماڵپەڕەکانەوە بە ڕووکارێکی ئاسان بۆ بەکارهێنان. ئەم "
+"تایبەتمەندیانەی خوارەوە پێشکەش دەکات:"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:15
 msgid "Convert videos to MP3"
-msgstr "Převod videí do MP3"
+msgstr "گۆڕینی ڤیدیۆکان بۆ MP3"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:16
 msgid "Supports password-protected and private videos"
-msgstr "Podpora zaheslovaných a soukromých videí"
+msgstr "پشتگیری لە ڤیدیۆی پارێزراو بە وشەی نهێنی و تایبەت دەکات"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:17
 msgid "Download single videos or whole playlists"
-msgstr "Stažení jednoho videa nebo celých playlistů"
+msgstr "تاکە ڤیدیۆ یان تەواوی پلەی لیستەکان دابەزێنە"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:18
 msgid "Automatically selects a video format based on your quality demands"
-msgstr "Automatický výběr formátu videa podle zvolených požadavků na kvalitu"
+msgstr ""
+"بە شێوەیەکی ئۆتۆماتیکی فۆرماتێکی ڤیدیۆیی هەڵدەبژێرێت بە پشتبەستن بە "
+"داواکارییەکانی کوالیتی"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:20
 msgid "Based on yt-dlp."
-msgstr "Založen na yt-dlp."
+msgstr "لەسەر بنەمای yt-dlp."
 
 #. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/com.github.unrud.VideoDownloader.desktop.in:14
 msgid "YouTube;Download;"
-msgstr "YouTube;Download;"
+msgstr ""
 
 #: data/com.github.unrud.VideoDownloader.desktop.in:17
 #: src/shortcuts_dialog.ui:39 src/window.ui:26
 msgid "New Window"
-msgstr "Nové okno"
+msgstr "پەنجەرەی نوێ"
 
 #: src/authentication_dialog.py:30
 msgid "Authentication Required"
-msgstr "Je vyžadováno ověření"
+msgstr "سەلماندن پێویستە"
 
 #: src/authentication_dialog.py:34 src/window.ui:245
 msgid "Cancel"
-msgstr "Zrušit"
+msgstr "ڕەتکردنەوە"
 
 #: src/authentication_dialog.py:46
 msgid "Sign in"
-msgstr "Přihlásit se"
+msgstr "چوونە ژوورەوە"
 
 #: src/authentication_dialog.py:46
 msgid "Skip"
-msgstr "Přeskočit"
+msgstr "پەڕاندن"
 
 #: src/authentication_dialog_login.ui:31
 #: src/authentication_dialog_password.ui:31
 msgid "The video is not public."
-msgstr "Video není veřejné."
+msgstr "ڤیدیۆکە گشتی نییە."
 
 #: src/authentication_dialog_login.ui:44
 msgid "Username"
-msgstr "Uživatelské jméno"
+msgstr "ناوی بەکارهێنەر"
 
 #: src/authentication_dialog_login.ui:70
 #: src/authentication_dialog_password.ui:40
 msgid "Password"
-msgstr "Heslo"
+msgstr "وشەی نهێنی"
 
 #: src/main.py:38
 msgid "Prefill URL field"
-msgstr "Předvyplněné pole URL"
+msgstr "مەیدانی URL پێش پڕکردنەوە"
 
 #: src/model.py:67
 msgid "Best"
-msgstr "Nejlepší"
+msgstr "باشترین"
 
 #: src/model.py:68
 msgid "4320p (8K)"
@@ -144,119 +146,119 @@ msgstr "144p"
 
 #: src/model.py:159
 msgid "Invalid download folder"
-msgstr "Neplatná složka pro stahování"
+msgstr "فۆڵدەری دابەزاندنی نادروست"
 
 #: src/model.py:280 src/model.py:286 src/window.py:358
 msgid "Not a directory"
-msgstr "Nikoliv adresář"
+msgstr "فۆڵدەر نییە"
 
 #: src/model.py:284 src/model.py:289
 msgid "Permission denied"
-msgstr "Povolení zamítnuto"
+msgstr "مۆڵەت ڕەتکرایەوە"
 
 #: src/playlist_dialog.py:29
 msgid "Download Playlist?"
-msgstr "Stáhnout playlist?"
+msgstr "داگرتنی پلەی لیست؟"
 
 #: src/playlist_dialog.py:30
 msgid "The video is part of a playlist."
-msgstr "Video je součástí playlistu."
+msgstr "ڤیدیۆکە بەشێکە لە پلەی لیستێک."
 
 #: src/playlist_dialog.py:32
 msgid "Single Video"
-msgstr "Jedno video"
+msgstr "تاکە ڤیدیۆ"
 
 #: src/playlist_dialog.py:33
 msgid "All Videos in Playlist"
-msgstr "Všechna videa z playlistu"
+msgstr "هەموو ڤیدیۆکان لە پلەیلیستدان"
 
 #: src/shortcuts_dialog.ui:29
 msgid "General"
-msgstr "Obecné"
+msgstr "گشتی"
 
 #: src/shortcuts_dialog.ui:33
 msgid "Open Menu"
-msgstr "Otevřít nabídku"
+msgstr "مێنۆ بکەرەوە"
 
 #: src/shortcuts_dialog.ui:45
 msgid "Close Window"
-msgstr "Zavřít okno"
+msgstr "پەنجەرەکە داخە"
 
 #: src/shortcuts_dialog.ui:51
 msgid "Quit"
-msgstr "Ukončit"
+msgstr "دەرچوون"
 
 #: src/shortcuts_dialog.ui:57 src/window.ui:37
 msgid "Keyboard Shortcuts"
-msgstr "Klávesové zkratky"
+msgstr "کورتکراوەکانی تەختەکلیل"
 
 #: src/shortcuts_dialog.ui:64
 msgid "Navigation"
-msgstr "Navigace"
+msgstr "گەڕان"
 
 #: src/shortcuts_dialog.ui:68
 msgid "Go back"
-msgstr "Přejít zpět"
+msgstr "بگەڕێوە دواوە"
 
 #: src/shortcuts_dialog.ui:74
 msgid "Switch to Audio"
-msgstr "Přejít ke Zvuku"
+msgstr "بگۆڕە بۆ دەنگ"
 
 #: src/shortcuts_dialog.ui:80
 msgid "Switch to Video"
-msgstr "Přejít k Videu"
+msgstr "بگۆڕە بۆ ڤیدیۆ"
 
 #: src/window.py:187
 msgid "Downloading"
-msgstr "Stahování"
+msgstr "دابەزاندن"
 
 #: src/window.py:189 src/window.py:209
 msgid "{} of {}"
-msgstr "{} z {}"
+msgstr "{} لە {}"
 
 #: src/window.py:210 src/window.py:211
 msgid "unknown"
-msgstr "neznámý"
+msgstr "نەزانراو"
 
 #: src/window.py:281 src/window.ui:386
 msgid "Download failed"
-msgstr "Stahování se nezdařilo"
+msgstr "داگرتنەکە سەرکەوتوو نەبوو"
 
 #: src/window.py:285 src/window.ui:511
 msgid "Download finished"
-msgstr "Stahování dokončeno"
+msgstr "داگرتن تەواو بوو"
 
 #: src/window.py:291 src/window.ui:530
 msgid "Open Download Location"
-msgstr "Otevřít adresář pro stahování"
+msgstr "شوێنی دابەزاندن بکەرەوە"
 
 #: src/window.py:329
 msgid "Reset to Default"
-msgstr "Resetovat na výchozí hodnoty"
+msgstr "ڕێست بکە بۆ باری سەرەکی"
 
 #: src/window.py:330 src/window.py:363 src/window.ui:33
 msgid "Change Download Location"
-msgstr "Vybrat složku pro stahování"
+msgstr "گۆڕینی شوێنی دابەزاندن"
 
 #: src/window.py:360
 msgid "Invalid folder selected"
-msgstr "Vybrána nesprávná složka"
+msgstr "فۆڵدەری نادروست هەڵبژێردرا"
 
 #: src/window.py:364
 msgid "Select Folder"
-msgstr "Vybrat složku"
+msgstr "فۆڵدەر هەڵبژێرە"
 
 #: src/window.ui:41
 msgid "About Video Downloader"
-msgstr "O aplikaci Video Downloader"
+msgstr "دەربارەی ڤیدیۆ دابەزێنەر"
 
 #: src/window.ui:91
 msgid "Main Menu"
-msgstr "Hlavní nabídka"
+msgstr "لیستی سه‌ره‌كی"
 
 #: src/window.ui:105
 msgid "Audio"
-msgstr "Zvuk"
+msgstr "دەنگ"
 
 #: src/window.ui:127 src/window.ui:178
 msgid "URL"
@@ -264,24 +266,24 @@ msgstr "URL"
 
 #: src/window.ui:137 src/window.ui:207
 msgid "Download"
-msgstr "Stáhnout"
+msgstr "دابەزاندن"
 
 #: src/window.ui:156
 msgid "Video"
-msgstr "Video"
+msgstr "ڤیدیۆ"
 
 #: src/window.ui:186
 msgid "Resolution"
-msgstr "Rozlišení"
+msgstr "ڕونی"
 
 #: src/window.ui:194
 msgid "Prefer MPEG format"
-msgstr "Preferovat formát MPEG"
+msgstr "فۆرماتەکەی MPEG بە باشتر دەزانرێت"
 
 #: src/window.ui:338 src/window.ui:357 src/window.ui:463 src/window.ui:482
 msgid "Back"
-msgstr "Zpět"
+msgstr "گەڕانەوە"
 
 #: src/window.ui:405 src/window.ui:547
 msgid "Details"
-msgstr "Detaily"
+msgstr "ووردەکاریەکان"

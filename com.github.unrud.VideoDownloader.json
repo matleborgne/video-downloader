@@ -1,7 +1,7 @@
 {
     "app-id": "com.github.unrud.VideoDownloader",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "43",
+    "runtime-version": "47",
     "sdk": "org.gnome.Sdk",
     "command": "video-downloader",
     "finish-args": [
@@ -23,37 +23,17 @@
         "*.la",
         "*.a"
     ],
+    "cleanup-commands": [
+        "mkdir -p /app/lib/ffmpeg"
+    ],
+    "add-extensions": {
+        "org.freedesktop.Platform.ffmpeg-full": {
+            "directory": "lib/ffmpeg",
+            "version": "24.08",
+            "add-ld-path": "."
+        }
+    },
     "modules": [
-        {
-            "name": "ffmpeg",
-            "config-opts": [
-                "--disable-debug",
-                "--disable-doc",
-                "--disable-static",
-                "--enable-gpl",
-                "--enable-shared",
-                "--disable-ffplay",
-                "--disable-devices",
-                "--enable-gnutls",
-                "--enable-libmp3lame",
-                "--enable-libvorbis"
-            ],
-            "cleanup": [
-                "/share/ffmpeg"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://ffmpeg.org/releases/ffmpeg-6.0.tar.xz",
-                    "sha256": "57be87c22d9b49c112b6d24bc67d42508660e6b718b3db89c44e47e289137082",
-                    "x-checker-data": {
-                        "type": "html",
-                        "url": "https://ffmpeg.org/releases/",
-                        "pattern": ">(ffmpeg-([\\d.]+)\\.tar\\.xz)<"
-                    }
-                }
-            ]
-        },
         {
             "name": "pyxattr",
             "buildsystem": "simple",
@@ -63,8 +43,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/iustin/pyxattr/archive/refs/tags/v0.8.0.tar.gz",
-                    "sha256": "8d72f0c8d43bb9d75b1948229983d2e99593b0e9fd417e89a9026fd1e23b57e7",
+                    "url": "https://github.com/iustin/pyxattr/archive/refs/tags/v0.8.1.tar.gz",
+                    "sha256": "ce7ef783e751b96610a6eb32fc49a89340b5dc575fbe15054ce7935ebaf49edb",
                     "x-checker-data": {
                         "type": "json",
                         "url": "https://api.github.com/repos/iustin/pyxattr/releases/latest",
@@ -83,8 +63,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/quodlibet/mutagen/archive/refs/tags/release-1.46.0.tar.gz",
-                    "sha256": "734455642e734983353a85ec6e00c809564c63e53ec10cffc1152d51dd576b5e",
+                    "url": "https://github.com/quodlibet/mutagen/archive/refs/tags/release-1.47.0.tar.gz",
+                    "sha256": "f7489e19d375c31ba1962ab19e11eca8b9f86f05bfd99cef467f8dd875d8941e",
                     "x-checker-data": {
                         "type": "json",
                         "url": "https://api.github.com/repos/quodlibet/mutagen/releases/latest",
@@ -99,13 +79,13 @@
             "buildsystem": "simple",
             "build-commands": [
                 "touch .separate_namespace",
-                "pip3 install --prefix=/app ."
+                "pip3 install --no-build-isolation --prefix=/app ."
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/Legrandin/pycryptodome/archive/refs/tags/v3.17.0.tar.gz",
-                    "sha256": "d677199dc3f4d502d6d78bd8855f313eed427be4545bd6a8188c7fc0799ea379",
+                    "url": "https://github.com/Legrandin/pycryptodome/archive/refs/tags/v3.21.0.tar.gz",
+                    "sha256": "195e5cdfbb550b03f83f2af2aa4652c14b64783574d835fe61bb06c8fc06ba21",
                     "x-checker-data": {
                         "type": "json",
                         "url": "https://api.github.com/repos/Legrandin/pycryptodome/tags",
@@ -119,13 +99,13 @@
             "name": "websockets",
             "buildsystem": "simple",
             "build-commands": [
-                "pip3 install --prefix=/app ."
+                "pip3 install --no-build-isolation --prefix=/app ."
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/aaugustin/websockets/archive/refs/tags/10.4.tar.gz",
-                    "sha256": "5c7f345bd7924544db691de2f21c80b6fed1f303a54bfa650b782016b64e54ae",
+                    "url": "https://github.com/aaugustin/websockets/archive/refs/tags/14.1.tar.gz",
+                    "sha256": "822f3c2bd7ac6b2d9b90271dccaf4e74453b3b0aba5323ade0bcade60102a5c1",
                     "x-checker-data": {
                         "type": "json",
                         "url": "https://api.github.com/repos/aaugustin/websockets/tags",
@@ -144,8 +124,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/google/brotli/archive/refs/tags/v1.0.9.tar.gz",
-                    "sha256": "f9e8d81d0405ba66d181529af42a3354f838c939095ff99930da6aa9cdf6fe46",
+                    "url": "https://github.com/google/brotli/archive/refs/tags/v1.1.0.tar.gz",
+                    "sha256": "e720a6ca29428b803f4ad165371771f5398faba397edf6778837a18599ea13ff",
                     "x-checker-data": {
                         "type": "json",
                         "url": "https://api.github.com/repos/google/brotli/releases/latest",
@@ -159,25 +139,18 @@
             "name": "yt-dlp",
             "buildsystem": "simple",
             "build-commands": [
-                "pip3 install --prefix=/app ."
+                "pip3 install --no-dependencies --prefix=/app \"$(echo *.whl)[default]\""
             ],
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "https://github.com/yt-dlp/yt-dlp/releases/download/2023.03.04/yt-dlp.tar.gz",
-                    "sha256": "771d2abefcd5f1e6f3ab6d6d18cdae98be4ab73538d1174e7e7236640418e150",
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/a4/97/73eadf12412173dc518897a2715693e6caa73d6550ddf0b7c47c6f1e7703/yt_dlp-2025.1.15-py3-none-any.whl",
+                    "sha256": "b8666b88e23c3fa5ee1e80920f4a9dfac7c405504a447214c0cf3d0c386edcfc",
                     "x-checker-data": {
-                        "type": "json",
-                        "url": "https://api.github.com/repos/yt-dlp/yt-dlp/tags",
-                        "version-query": "[.[].name | select(. != \"nightly\")] | sort[-1]",
-                        "url-query": "\"https://github.com/yt-dlp/yt-dlp/releases/download/\" + $version + \"/yt-dlp.tar.gz\""
+                        "type": "pypi",
+                        "name": "yt-dlp",
+                        "packagetype": "bdist_wheel"
                     }
-                },
-                {
-                    "type": "shell",
-                    "commands": [
-                        "sed -i 's/^certifi\\b/#\\0/' requirements.txt"
-                    ]
                 }
             ]
         },

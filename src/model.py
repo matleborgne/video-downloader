@@ -54,6 +54,7 @@ class Model(GObject.GObject, downloader.HandlerInterface):
     download_playlist_count = GObject.Property(type=GObject.TYPE_INT64)
     download_filename = GObject.Property(type=str)
     download_title = GObject.Property(type=str)
+    download_titles = GObject.Property(type=GObject.TYPE_STRV)
     download_thumbnail = GObject.Property(type=str)
     # 0.0 - 1.0 (inclusive), negative if unknown:
     download_progress = GObject.Property(type=float, default=-1)
@@ -82,7 +83,7 @@ class Model(GObject.GObject, downloader.HandlerInterface):
         self._handler = handler
         self._cs.add_close_callback(setattr, self, '_handler', None)
         self._downloader = downloader.Downloader(self)
-        self._cs.add_close_callback(self._downloader.shutdown)
+        self._cs.add_close_callback(self._downloader.destroy)
         self._active_download_lock = None
         self.actions = gobject_log(Gio.SimpleActionGroup.new())
         for action_name, callback, *extra_args in [
@@ -96,55 +97,78 @@ class Model(GObject.GObject, downloader.HandlerInterface):
             self._cs.push(SignalConnection(
                 action, 'activate', callback, *extra_args, no_args=True))
             self.actions.add_action(action)
-        self._cs.push(PropertyBinding(
-            self, 'url', self.actions.lookup_action('download'), 'enabled',
-            bool))
-        self._prev_state = None
-        self._cs.push(PropertyBinding(
-            self, 'state', func_a_to_b=self._state_transition))
+
+        def update_download_action_enabled():
+            self.actions.lookup_action('download').set_property(
+                'enabled', bool(self.url) and
+                self._is_valid_state_transition(self.state, 'prepare'))
+        for name in ['state', 'url']:
+            self._cs.push(SignalConnection(
+                self, 'notify::' + name,
+                update_download_action_enabled, no_args=True))
+        update_download_action_enabled()
         self._cs.push(PropertyBinding(
             self, 'state', self.actions.lookup_action('cancel'), 'enabled',
-            lambda s: s == 'download'))
+            lambda state: self._is_valid_state_transition(state, 'cancel')))
+        self._cs.push(PropertyBinding(
+            self, 'state', self.actions.lookup_action('back'), 'enabled',
+            lambda state: self._is_valid_state_transition(state, 'start')))
         self._cs.push(PropertyBinding(
             self, 'state',
             self.actions.lookup_action('open-finished-download-dir'),
-            'enabled', lambda s: s == 'success'))
+            'enabled', lambda state: state == 'success'))
+
+        self._prev_state = None
+        self._cs.push(PropertyBinding(
+            self, 'state', func_a_to_b=self._state_transition))
+
+    @staticmethod
+    def _is_valid_state_transition(state, next_state):
+        if next_state == 'start':
+            return state not in ['start', 'download']
+        if next_state == 'prepare':
+            return state == 'start'
+        if next_state == 'download':
+            return state == 'prepare'
+        if next_state in ['cancel', 'success', 'error']:
+            return state == 'download'
+        return False
 
     def _state_transition(self, state):
-        if state == 'start':
-            assert self._prev_state != 'download'
+        if self._prev_state == state:
+            return
+        if not self._is_valid_state_transition(self._prev_state, state):
+            self.state = self._prev_state
+            assert False, 'invalid state transition %r -> %r' % (
+                self._prev_state, state)
+            return
+        self._prev_state = state
+
+        if state == 'prepare':
             self.error = ''
             self.download_playlist_index = 0
             self.download_playlist_count = 0
             self.download_filename = ''
             self.download_title = ''
+            self.download_titles = None
             self.download_thumbnail = ''
             self.download_progress = -1
             self.download_bytes = -1
             self.download_bytes_total = -1
             self.download_speed = -1
             self.download_eta = -1
-            self.finished_download_filenames = []
+            self.finished_download_filenames = None
             self.finished_download_dir = ''
-        elif state == 'prepare':
-            assert self._prev_state == 'start'
             self._try_start_download()
-        elif state == 'download':
-            assert self._prev_state == 'prepare'
+        if state == 'download':
             self._downloader.start()
-        elif state == 'cancel':
-            assert self._prev_state == 'download'
+        if state == 'cancel':
             self._downloader.cancel()
-        elif state in ['success', 'error']:
-            assert self._prev_state == 'download'
-        else:
-            assert False, 'invalid value for \'state\' property: %r' % state
-        self._prev_state = state
 
     def _open_finished_download_dir(self):
         assert self.finished_download_dir
         open_in_file_manager(self.finished_download_dir,
-                             self.finished_download_filenames)
+                             self.finished_download_filenames or [])
 
     def _try_start_download(self):
         path = expand_path(self.download_folder)
@@ -163,7 +187,7 @@ class Model(GObject.GObject, downloader.HandlerInterface):
                 self._try_start_download()
         response.add_done_callback(handle_response)
 
-    def shutdown(self):
+    def destroy(self):
         self._cs.close()
 
     def on_pulse(self):
@@ -242,6 +266,7 @@ class Model(GObject.GObject, downloader.HandlerInterface):
         self.download_playlist_index = playlist_index
         self.download_playlist_count = playlist_count
         self.download_title = title
+        self.download_titles = [*(self.download_titles or []), title]
 
     def _download_unlock(self):
         if self._active_download_lock:

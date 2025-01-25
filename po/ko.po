@@ -1,110 +1,110 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the video-downloader package.
-# Vojtěch Perník <translations@pervoj.cz>, 2021.
-# vikdevelop <super-vik1@protonmail.com>, 2023, 2024.
+# Lee Junseo <junseo010111@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: video-downloader\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-04-13 19:20+0200\n"
-"PO-Revision-Date: 2024-08-02 23:04+0000\n"
-"Last-Translator: vikdevelop <super-vik1@protonmail.com>\n"
-"Language-Team: Czech <https://hosted.weblate.org/projects/video-downloader/"
-"gui/cs/>\n"
-"Language: cs\n"
+"PO-Revision-Date: 2023-04-25 08:48+0000\n"
+"Last-Translator: Lee Junseo <junseo010111@gmail.com>\n"
+"Language-Team: Korean <https://hosted.weblate.org/projects/video-downloader/"
+"gui/ko/>\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.7-dev\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:7
 #: data/com.github.unrud.VideoDownloader.desktop.in:3 src/about_dialog.ui.in:27
 #: src/main.py:39 src/window.ui:50
 msgid "Video Downloader"
-msgstr "Video Downloader"
+msgstr "비디오 다운로더"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:8
 #: data/com.github.unrud.VideoDownloader.desktop.in:4
+#, fuzzy
 msgid "Download web videos"
-msgstr "Stahování videí z webu"
+msgstr "유튜브, 또는 다양한 웹사이트에서 동영상을 다운받으세요"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:10
 msgid ""
 "Download videos from websites with an easy-to-use interface. Provides the "
 "following features:"
 msgstr ""
-"Stahujte videa z internetu pomocí jednoduchého rozhraní s následujícími "
-"funkcemi:"
+"간편한 인터페이스로 웹사이트들에서 동영상을 다운받을 수 있습니다. 다음과 같"
+"은 기능들을 제공합니다:"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:15
 msgid "Convert videos to MP3"
-msgstr "Převod videí do MP3"
+msgstr "동영상을 MP3 형식으로 변환하기"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:16
 msgid "Supports password-protected and private videos"
-msgstr "Podpora zaheslovaných a soukromých videí"
+msgstr "암호가 있거나 비공개된 영상들을 지원합니다"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:17
 msgid "Download single videos or whole playlists"
-msgstr "Stažení jednoho videa nebo celých playlistů"
+msgstr "동영상 한개, 또는 재생목록 전체를 다운받을 수 있습니다"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:18
 msgid "Automatically selects a video format based on your quality demands"
-msgstr "Automatický výběr formátu videa podle zvolených požadavků na kvalitu"
+msgstr "당신의 영상 품질 선택에 따라 비디오의 형식을 자동으로 선택합니다"
 
 #: data/com.github.unrud.VideoDownloader.metainfo.xml.in:20
 msgid "Based on yt-dlp."
-msgstr "Založen na yt-dlp."
+msgstr "yt-dlp를 기반으로 합니다."
 
 #. TRANSLATORS: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/com.github.unrud.VideoDownloader.desktop.in:14
 msgid "YouTube;Download;"
-msgstr "YouTube;Download;"
+msgstr ""
 
 #: data/com.github.unrud.VideoDownloader.desktop.in:17
 #: src/shortcuts_dialog.ui:39 src/window.ui:26
 msgid "New Window"
-msgstr "Nové okno"
+msgstr "새 창"
 
 #: src/authentication_dialog.py:30
 msgid "Authentication Required"
-msgstr "Je vyžadováno ověření"
+msgstr "인증 필요"
 
 #: src/authentication_dialog.py:34 src/window.ui:245
 msgid "Cancel"
-msgstr "Zrušit"
+msgstr "취소"
 
 #: src/authentication_dialog.py:46
 msgid "Sign in"
-msgstr "Přihlásit se"
+msgstr "로그인"
 
 #: src/authentication_dialog.py:46
 msgid "Skip"
-msgstr "Přeskočit"
+msgstr "건너뛰기"
 
 #: src/authentication_dialog_login.ui:31
 #: src/authentication_dialog_password.ui:31
 msgid "The video is not public."
-msgstr "Video není veřejné."
+msgstr "이 영상은 공개 상태가 아닙니다."
 
 #: src/authentication_dialog_login.ui:44
 msgid "Username"
-msgstr "Uživatelské jméno"
+msgstr "아이디"
 
 #: src/authentication_dialog_login.ui:70
 #: src/authentication_dialog_password.ui:40
 msgid "Password"
-msgstr "Heslo"
+msgstr "비밀번호"
 
 #: src/main.py:38
 msgid "Prefill URL field"
-msgstr "Předvyplněné pole URL"
+msgstr "미리 입력된 URL란"
 
 #: src/model.py:67
 msgid "Best"
-msgstr "Nejlepší"
+msgstr "최상"
 
 #: src/model.py:68
 msgid "4320p (8K)"
@@ -144,119 +144,119 @@ msgstr "144p"
 
 #: src/model.py:159
 msgid "Invalid download folder"
-msgstr "Neplatná složka pro stahování"
+msgstr "잘못된 다운로드 폴더"
 
 #: src/model.py:280 src/model.py:286 src/window.py:358
 msgid "Not a directory"
-msgstr "Nikoliv adresář"
+msgstr "경로가 아님"
 
 #: src/model.py:284 src/model.py:289
 msgid "Permission denied"
-msgstr "Povolení zamítnuto"
+msgstr "접근 권한 없음"
 
 #: src/playlist_dialog.py:29
 msgid "Download Playlist?"
-msgstr "Stáhnout playlist?"
+msgstr "재생목록을 다운로드 하시겠습니까?"
 
 #: src/playlist_dialog.py:30
 msgid "The video is part of a playlist."
-msgstr "Video je součástí playlistu."
+msgstr "재생목록에 포함된 영상입니다."
 
 #: src/playlist_dialog.py:32
 msgid "Single Video"
-msgstr "Jedno video"
+msgstr "단일 영상"
 
 #: src/playlist_dialog.py:33
 msgid "All Videos in Playlist"
-msgstr "Všechna videa z playlistu"
+msgstr "재생목록의 모든 동영상들"
 
 #: src/shortcuts_dialog.ui:29
 msgid "General"
-msgstr "Obecné"
+msgstr "일반"
 
 #: src/shortcuts_dialog.ui:33
 msgid "Open Menu"
-msgstr "Otevřít nabídku"
+msgstr "매뉴 열기"
 
 #: src/shortcuts_dialog.ui:45
 msgid "Close Window"
-msgstr "Zavřít okno"
+msgstr "창 닫기"
 
 #: src/shortcuts_dialog.ui:51
 msgid "Quit"
-msgstr "Ukončit"
+msgstr "나가기"
 
 #: src/shortcuts_dialog.ui:57 src/window.ui:37
 msgid "Keyboard Shortcuts"
-msgstr "Klávesové zkratky"
+msgstr "키보드 단축키"
 
 #: src/shortcuts_dialog.ui:64
 msgid "Navigation"
-msgstr "Navigace"
+msgstr "네비게이션"
 
 #: src/shortcuts_dialog.ui:68
 msgid "Go back"
-msgstr "Přejít zpět"
+msgstr "뒤로가기"
 
 #: src/shortcuts_dialog.ui:74
 msgid "Switch to Audio"
-msgstr "Přejít ke Zvuku"
+msgstr "음성으로 전환하기"
 
 #: src/shortcuts_dialog.ui:80
 msgid "Switch to Video"
-msgstr "Přejít k Videu"
+msgstr "영상으로 전환하기"
 
 #: src/window.py:187
 msgid "Downloading"
-msgstr "Stahování"
+msgstr "다운로드중"
 
 #: src/window.py:189 src/window.py:209
 msgid "{} of {}"
-msgstr "{} z {}"
+msgstr "{} 의 {}"
 
 #: src/window.py:210 src/window.py:211
 msgid "unknown"
-msgstr "neznámý"
+msgstr "알수없음"
 
 #: src/window.py:281 src/window.ui:386
 msgid "Download failed"
-msgstr "Stahování se nezdařilo"
+msgstr "다운로드 실패"
 
 #: src/window.py:285 src/window.ui:511
 msgid "Download finished"
-msgstr "Stahování dokončeno"
+msgstr "다운로드 완료"
 
 #: src/window.py:291 src/window.ui:530
 msgid "Open Download Location"
-msgstr "Otevřít adresář pro stahování"
+msgstr "다운로드 위치 열기"
 
 #: src/window.py:329
 msgid "Reset to Default"
-msgstr "Resetovat na výchozí hodnoty"
+msgstr "기본값으로 초기화"
 
 #: src/window.py:330 src/window.py:363 src/window.ui:33
 msgid "Change Download Location"
-msgstr "Vybrat složku pro stahování"
+msgstr "다운로드 위치 변경"
 
 #: src/window.py:360
 msgid "Invalid folder selected"
-msgstr "Vybrána nesprávná složka"
+msgstr "잘못된 폴더 선택됨"
 
 #: src/window.py:364
 msgid "Select Folder"
-msgstr "Vybrat složku"
+msgstr "폴더 선택"
 
 #: src/window.ui:41
 msgid "About Video Downloader"
-msgstr "O aplikaci Video Downloader"
+msgstr "Video Downloader에 대하여"
 
 #: src/window.ui:91
 msgid "Main Menu"
-msgstr "Hlavní nabídka"
+msgstr "메인 매뉴"
 
 #: src/window.ui:105
 msgid "Audio"
-msgstr "Zvuk"
+msgstr "음성"
 
 #: src/window.ui:127 src/window.ui:178
 msgid "URL"
@@ -264,24 +264,24 @@ msgstr "URL"
 
 #: src/window.ui:137 src/window.ui:207
 msgid "Download"
-msgstr "Stáhnout"
+msgstr "다운로드"
 
 #: src/window.ui:156
 msgid "Video"
-msgstr "Video"
+msgstr "동영상"
 
 #: src/window.ui:186
 msgid "Resolution"
-msgstr "Rozlišení"
+msgstr "해상도"
 
 #: src/window.ui:194
 msgid "Prefer MPEG format"
-msgstr "Preferovat formát MPEG"
+msgstr "MPEG 형식 선호"
 
 #: src/window.ui:338 src/window.ui:357 src/window.ui:463 src/window.ui:482
 msgid "Back"
-msgstr "Zpět"
+msgstr "뒤로가기"
 
 #: src/window.ui:405 src/window.ui:547
 msgid "Details"
-msgstr "Detaily"
+msgstr "자세히 보기"

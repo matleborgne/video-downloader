@@ -44,17 +44,15 @@ class Downloader:
         self._handler = handler
         self._process = None
         self._pending_response = None
-        self._cancelled = False
 
-    def shutdown(self):
+    def destroy(self):
         self._handler = None
         if self._process:
             self._finish_process_and_kill_pgrp()
 
     def cancel(self):
-        if not self._cancelled:
-            self._process.terminate()
-        self._cancelled = True
+        assert self._process
+        self._process.terminate()
         if self._pending_response:
             self._pending_response.cancel()
 
@@ -92,7 +90,6 @@ class Downloader:
     def _finish_process_and_kill_pgrp(self):
         assert self._process
         process, self._process = self._process, None
-        self._cancelled = False
         try:
             # Terminate process gracefully so it can delete temporary files
             process.terminate()
